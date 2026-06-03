@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Persona Ana — Ficha Técnica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Inter',-apple-system,sans-serif;background:#fdf6f0;color:#2d2d2d;line-height:1.6;padding:24px}
+  .container{max-width:1100px;margin:0 auto}
+
+  /* Header card */
+  .header-card{background:linear-gradient(135deg,#fff5ee 0%,#ffe6d5 100%);border-radius:24px;padding:0;overflow:hidden;box-shadow:0 20px 60px rgba(232,150,110,.12);display:grid;grid-template-columns:380px 1fr;margin-bottom:32px}
+  .photo-wrap{position:relative;background:#f0d4bc}
+  .photo-wrap img{width:100%;height:100%;object-fit:cover;display:block;min-height:480px}
+  .photo-tag{position:absolute;bottom:20px;left:20px;background:rgba(255,255,255,.95);padding:8px 14px;border-radius:20px;font-size:12px;color:#7a4d2e;font-weight:600;backdrop-filter:blur(8px)}
+  .header-info{padding:50px 48px;display:flex;flex-direction:column;justify-content:center}
+  .label{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#c9794d;font-weight:700;margin-bottom:12px}
+  .name{font-family:'Playfair Display',serif;font-size:64px;font-weight:800;color:#3d2316;line-height:1;margin-bottom:8px;letter-spacing:-1.5px}
+  .age-tag{display:inline-block;background:#3d2316;color:#fff5ee;padding:4px 14px;border-radius:20px;font-size:14px;font-weight:600;margin-bottom:24px;width:fit-content}
+  .tagline{font-size:20px;color:#5d4435;font-style:italic;line-height:1.5;margin-bottom:32px;font-weight:500}
+  .quick-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:auto}
+  .stat{background:rgba(255,255,255,.6);padding:14px 18px;border-radius:14px;border-left:3px solid #d97a4f}
+  .stat-label{font-size:11px;color:#a06a45;text-transform:uppercase;letter-spacing:1px;font-weight:600;margin-bottom:4px}
+  .stat-val{font-size:15px;font-weight:600;color:#3d2316}
+
+  /* Sections */
+  section{background:#fff;border-radius:20px;padding:36px 40px;margin-bottom:24px;box-shadow:0 6px 24px rgba(0,0,0,.04)}
+  h2{font-family:'Playfair Display',serif;font-size:30px;color:#3d2316;margin-bottom:8px;font-weight:700;display:flex;align-items:center;gap:14px}
+  h2 .icon{font-size:32px}
+  h2 .num{font-family:'Inter',sans-serif;color:#d97a4f;font-size:14px;background:#fdebdf;padding:4px 10px;border-radius:8px;font-weight:700;margin-left:auto}
+  .section-sub{color:#7a6051;font-size:14px;margin-bottom:24px;font-style:italic}
+  h3{font-size:17px;color:#5d4435;margin:20px 0 12px;font-weight:600}
+
+  ul.clean{list-style:none}
+  ul.clean li{padding:10px 0;border-bottom:1px solid #f5e8df;display:flex;gap:12px;align-items:flex-start}
+  ul.clean li:last-child{border-bottom:none}
+  ul.clean li::before{content:'';flex-shrink:0;width:6px;height:6px;border-radius:50%;background:#d97a4f;margin-top:9px}
+
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .grid-2 > div{background:#fdf6f0;padding:22px 26px;border-radius:14px}
+  .grid-2 h3{margin-top:0}
+
+  /* Product categories */
+  .cat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:18px;margin-top:20px}
+  .cat-card{background:#fdf6f0;border-radius:14px;padding:22px;border-top:4px solid #d97a4f;transition:transform .15s}
+  .cat-card:hover{transform:translateY(-2px)}
+  .cat-card.lead{border-top-color:#c9501e;background:linear-gradient(135deg,#fff0e3,#ffe2c8)}
+  .cat-card h4{font-family:'Playfair Display',serif;font-size:19px;color:#3d2316;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+  .cat-card .pct{font-size:11px;color:#c9501e;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+  .cat-card ul{margin:0;padding:0;list-style:none;font-size:13px;color:#5d4435;line-height:1.7}
+  .cat-card ul li::before{content:'•';color:#d97a4f;margin-right:8px;font-weight:bold}
+  .star{color:#d97a4f}
+
+  /* Don't list */
+  .dont-list{background:#fef0ed;border-left:4px solid #c9501e;padding:22px 26px;border-radius:12px;margin-top:14px}
+  .dont-list h3{color:#7a3520;margin-top:0;margin-bottom:12px;display:flex;align-items:center;gap:10px}
+  .dont-list ul{list-style:none;padding-left:0}
+  .dont-list ul li{padding:6px 0;color:#7a3520;font-size:14px}
+  .dont-list ul li::before{content:'✕ ';color:#c9501e;font-weight:bold}
+
+  /* Behavior chips */
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .chip{background:#fff5ee;color:#7a4d2e;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;border:1px solid #f0d4bc}
+
+  /* Tom de voz cards */
+  .voice-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+  .voice-card{padding:16px 20px;border-radius:12px;font-size:14px}
+  .voice-do{background:#e8f5e9;border-left:3px solid #5fa569;color:#2a5631}
+  .voice-do strong{color:#1d3d22;display:block;margin-bottom:6px}
+  .voice-dont{background:#fef0ed;border-left:3px solid #c9501e;color:#7a3520}
+  .voice-dont strong{color:#5a2615;display:block;margin-bottom:6px}
+
+  .footer-note{text-align:center;color:#a06a45;font-size:13px;margin-top:32px;padding:20px}
+
+  @media(max-width:900px){
+    .header-card{grid-template-columns:1fr}
+    .photo-wrap img{min-height:340px}
+    .header-info{padding:32px}
+    .name{font-size:48px}
+    .grid-2, .voice-grid{grid-template-columns:1fr}
+    section{padding:24px}
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header-card">
+    <div class="photo-wrap">
+      <img src="https://images.unsplash.com/photo-1531983412531-1f49a365ffed?w=800&q=80&fit=crop&crop=faces" alt="Ana — mãe de primeira viagem">
+      <div class="photo-tag">📸 referência visual</div>
+    </div>
+    <div class="header-info">
+      <div class="label">Persona · Buscador Geek</div>
+      <h1 class="name">Ana</h1>
+      <span class="age-tag">30 anos · Mãe de primeira viagem</span>
+      <p class="tagline">"Estou aprendendo um milhão de coisas novas, e adoro descobrir produtos que outras mães já amaram."</p>
+      <div class="quick-stats">
+        <div class="stat"><div class="stat-label">Faixa etária</div><div class="stat-val">27–33 anos</div></div>
+        <div class="stat"><div class="stat-label">Filho</div><div class="stat-val">1 bebê · 0–6 meses</div></div>
+        <div class="stat"><div class="stat-label">Situação</div><div class="stat-val">Licença maternidade</div></div>
+        <div class="stat"><div class="stat-label">Renda familiar</div><div class="stat-val">R$ 4–12k / mês</div></div>
+        <div class="stat"><div class="stat-label">Localização</div><div class="stat-val">Capital ou cidade média</div></div>
+        <div class="stat"><div class="stat-label">Classe</div><div class="stat-val">B / C</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTEXTO -->
+  <section>
+    <h2><span class="icon">🌿</span>Contexto de vida</h2>
+    <p class="section-sub">Fase nova, ritmo novo — vida em casa com o bebê, e ela aproveita pra descobrir, conectar, cuidar.</p>
+    <ul class="clean">
+      <li><b>Vida nova, ritmo novo</b> — tem mais tempo em casa do que tinha antes, e usa esse tempo pra descobrir coisas novas.</li>
+      <li><b>Conectada o dia inteiro</b> — celular ao lado, pesquisa de tudo: receita, opinião de outras mães, melhor preço.</li>
+      <li><b>Curiosa e aprendendo</b> — primeira viagem, então tudo é novidade. Pergunta, pesquisa, testa.</li>
+      <li><b>Quer fazer "bem feito"</b> — escolhe produto bom, marca conhecida, recomendação de alguém que já usou.</li>
+      <li><b>Aproveita a fase pra se cuidar mais</b> — agora tem janela pra usar máscara facial, fazer skincare, pintar a unha.</li>
+      <li><b>Gosta de ter a casa funcionando</b> — descobre produtos práticos que economizam tempo (e conta orgulhosa pras amigas).</li>
+      <li><b>Tempo de tela alto</b> — abre os grupos várias vezes ao dia, principalmente no soninho do bebê e na amamentação.</li>
+    </ul>
+  </section>
+
+  <!-- O QUE QUER -->
+  <section>
+    <h2><span class="icon">💛</span>O que ela quer</h2>
+    <p class="section-sub">Sentimentos e necessidades que orientam o que ela compra.</p>
+    <div class="grid-2">
+      <div>
+        <h3>Pra ela</h3>
+        <ul class="clean">
+          <li>Sentir-se bem cuidada — cabelo bonito, pele hidratada</li>
+          <li>Lingerie confortável que cabe no corpo de agora</li>
+          <li>Pequenos rituais de autocuidado (skincare, unha)</li>
+          <li>Sentir que ainda é "ela" além de ser mãe</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Pra casa e bebê</h3>
+        <ul class="clean">
+          <li>Casa funcionando suave, sem virar projeto</li>
+          <li>Bebê dormindo bem e confortável</li>
+          <li>Amamentação resolvida (pomadas, conchas, sutiãs)</li>
+          <li>Achados que outras mães ainda não conhecem</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIAS DE PRODUTO -->
+  <section>
+    <h2><span class="icon">🛒</span>Categorias de produto<span class="num">7 pilares</span></h2>
+    <p class="section-sub">O que ela busca, na ordem de relevância. % indica peso sugerido no calendário de postagens.</p>
+
+    <div class="cat-grid">
+
+      <div class="cat-card lead">
+        <h4>💄 Cuidados dela</h4>
+        <div class="pct">25% do calendário · pilar principal</div>
+        <ul>
+          <li>Shampoo (Tio Nacho, Salon Line, Inoar)</li>
+          <li>Hidratante corporal (Nivea, Cetaphil)</li>
+          <li>Creme anti-estria (Bio-oil, Palmer's)</li>
+          <li>Skincare básico — sérum, hidratante facial</li>
+          <li>Hidratante labial premium</li>
+          <li>Vitamina pra cabelo</li>
+          <li>Sutiã sem aro / amamentação confortável</li>
+          <li>Calcinha pós-parto cintura alta</li>
+          <li>Legging confortável de casa</li>
+          <li>Esmaltinho da semana</li>
+          <li>Kit higiene íntima</li>
+        </ul>
+      </div>
+
+      <div class="cat-card lead">
+        <h4>✨ Achadinhos "só na internet"</h4>
+        <div class="pct">20% do calendário · pilar diferenciador</div>
+        <ul>
+          <li><strong>Percarbonato de sódio</strong> (a estrela)</li>
+          <li>Vassoura mágica · Mop japonês</li>
+          <li>Pano electrostático tipo Swiffer</li>
+          <li>Esponja microfibra reutilizável</li>
+          <li>Lava-louça em pastilhas concentradas</li>
+          <li>Limpa-juntas em gel · Removedor de mofo</li>
+          <li>Tira-manchas premium (Vanish Oxi, OxyClean)</li>
+          <li>Raspador anti-pelo de tecido</li>
+          <li>Pinça pra cílios · Tesoura sobrancelha pro</li>
+          <li>Saquinhos a vácuo pra armário</li>
+          <li>Organizador de cabos, suporte tampa panela</li>
+        </ul>
+      </div>
+
+      <div class="cat-card">
+        <h4>🏡 Casa e cozinha</h4>
+        <div class="pct">15% do calendário</div>
+        <ul>
+          <li>Air fryer (Mondial, Britânia, Oster)</li>
+          <li>Panela elétrica de pressão multifuncional</li>
+          <li>Liquidificador, batedeira de mão</li>
+          <li>Cafeteira / chaleira elétrica</li>
+          <li>Garrafa térmica grande (Stanley contratipo)</li>
+          <li>Organizadores de gaveta, colméia</li>
+          <li>Potes herméticos</li>
+          <li>Talheres de silicone</li>
+          <li>Tábua + facas básicas (Tramontina)</li>
+          <li>Mop spray giratório · Aspirador portátil</li>
+        </ul>
+      </div>
+
+      <div class="cat-card">
+        <h4>😴 Sono e conforto do bebê</h4>
+        <div class="pct">12% do calendário · 0–6 meses</div>
+        <ul>
+          <li>Ninho redutor de berço</li>
+          <li>Travesseiro anti-refluxo</li>
+          <li>Mosquiteiro de berço</li>
+          <li>Máquina ruído branco / projetor estrelas</li>
+          <li>Mobile musical de berço</li>
+          <li>Cobertor sherpa · Saco de dormir</li>
+          <li>Cadeira de descanso / bouncer</li>
+          <li>Almofada amamentação</li>
+        </ul>
+      </div>
+
+      <div class="cat-card">
+        <h4>🤱 Amamentação</h4>
+        <div class="pct">10% do calendário</div>
+        <ul>
+          <li>Concha amamentação</li>
+          <li>Protetor de mamilo silicone</li>
+          <li>Pomada Lansinoh / Bepantol</li>
+          <li>Almofada amamentação tipo U</li>
+          <li>Coletor de leite</li>
+          <li>Bomba tira-leite manual / elétrica</li>
+          <li>Saco para armazenar leite</li>
+          <li>Esterilizador micro-ondas</li>
+          <li>Aquecedor de mamadeira</li>
+        </ul>
+      </div>
+
+      <div class="cat-card">
+        <h4>🍼 Higiene do bebê</h4>
+        <div class="pct">8% do calendário</div>
+        <ul>
+          <li>Lenço umedecido (líder atual)</li>
+          <li>Pomada de assadura</li>
+          <li>Sabonete líquido bebê</li>
+          <li>Algodão</li>
+          <li>Banheira / suporte rede</li>
+          <li>Termômetro infravermelho</li>
+          <li>Aspirador nasal elétrico</li>
+        </ul>
+      </div>
+
+      <div class="cat-card">
+        <h4>🎨 Estímulos e livros bebê</h4>
+        <div class="pct">5% do calendário</div>
+        <ul>
+          <li>Livros de alto contraste preto/branco</li>
+          <li>Livros com texturas / livro de banho</li>
+          <li>Chocalho de contraste</li>
+          <li>Tapete sensorial / atividade</li>
+          <li>Brinquedo de estímulo 0–6m</li>
+          <li>Cartões de estímulo Montessori</li>
+          <li>Espelho infantil de berço</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <p style="text-align:right;color:#a06a45;font-size:12px;margin-top:16px;font-style:italic">Total: 95% temático + 5% rotativo (sazonal, limpeza extra, descobertas novas)</p>
+  </section>
+
+  <!-- COMPORTAMENTO -->
+  <section>
+    <h2><span class="icon">📱</span>Comportamento de compra</h2>
+    <p class="section-sub">Como ela navega, decide e compra.</p>
+
+    <div class="grid-2">
+      <div>
+        <h3>⏰ Quando ela está atenta</h3>
+        <ul class="clean">
+          <li><b>7h – 9h</b> · manhã com café, primeira checada</li>
+          <li><b>14h – 16h</b> · soninho da tarde do bebê</li>
+          <li><b>21h – 23h</b> · depois do bebê dormir</li>
+        </ul>
+      </div>
+      <div>
+        <h3>✅ Ela compra quando</h3>
+        <ul class="clean">
+          <li>Reconhece o produto + preço bom + frete OK</li>
+          <li>Vê outra mãe falando bem</li>
+          <li>Tem urgência ("só essa semana")</li>
+          <li>É um achadinho que só viu no grupo</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 style="margin-top:24px">🛍️ Onde ela compra</h3>
+    <div class="chips">
+      <span class="chip">🟠 Amazon · farmácia, higiene, livro</span>
+      <span class="chip">🔴 Shopee · achadinho, roupa, decoração</span>
+      <span class="chip">🟡 Mercado Livre · eletrodoméstico, casa</span>
+      <span class="chip">📲 Compra direto pelo app</span>
+    </div>
+
+    <h3 style="margin-top:24px">💡 O que a faz se sentir esperta</h3>
+    <p style="color:#5d4435;line-height:1.7">Descobrir uma "coisinha" que outras mães ainda não conhecem — tipo um percarbonato que tira QUALQUER mancha ou um organizador de gaveta de R$ 9 que transforma a cozinha. Isso vira história pra contar pras amigas.</p>
+  </section>
+
+  <!-- TOM DE VOZ -->
+  <section>
+    <h2><span class="icon">🗣️</span>Tom de voz nos posts</h2>
+    <p class="section-sub">Como falar com a Ana — vozes que ela acolhe vs. vozes que ela escapa.</p>
+    <div class="voice-grid">
+      <div class="voice-card voice-do"><strong>✓ Faça assim</strong>
+        Conversa de mãe pra mãe — "outra mãe que descobriu"<br>
+        Tom leve, curioso, animado<br>
+        Solução em 1–2 linhas<br>
+        Bom humor leve sobre rotina de bebê<br>
+        "Gente, OLHA o que eu achei 👀"<br>
+        Urgência real ("só hoje", "só 10 unidades")
+      </div>
+      <div class="voice-card voice-dont"><strong>✕ Evite</strong>
+        Tom dramático ou de sofrimento<br>
+        Termos pesados ("destruída", "exausta", "depressão")<br>
+        Posts longos demais<br>
+        Moralismo sobre maternidade<br>
+        Vendedor corporativo ("aproveite essa promoção exclusiva")<br>
+        Urgência inventada / falsa escassez
+      </div>
+    </div>
+  </section>
+
+  <!-- O QUE TIRAMOS -->
+  <section>
+    <h2><span class="icon">🚫</span>O que tiramos da programação</h2>
+    <p class="section-sub">Categorias que não entram porque não casam com a Ana.</p>
+    <div class="dont-list">
+      <ul>
+        <li>Cinta modeladora / shapewear</li>
+        <li>Produtos para crianças 1 ano+ (cadeira de alimentação grande, sapato infantil, mochila escolar)</li>
+        <li>Livros de leitura tradicional — substituídos por estímulo 0–6m</li>
+        <li>Móveis grandes (berço, cômoda, guarda-roupa)</li>
+        <li>Produtos exclusivamente de gestante (Ana passou dessa fase)</li>
+        <li>Roupa adulta cara, moda fast-fashion</li>
+        <li>Maquiagem profissional / palette completa</li>
+        <li>Eletrodoméstico grande (geladeira, fogão, máquina de lavar)</li>
+        <li>Produtos com posicionamento religioso ou político</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FOTO REFERENCIAL -->
+  <section style="background:linear-gradient(135deg,#fff5ee,#ffe6d5)">
+    <h2><span class="icon">📷</span>Sugestão de foto da Ana</h2>
+    <p class="section-sub">Pra usar em material interno, apresentações e direcionamento de criativo.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start">
+      <div>
+        <h3 style="margin-top:0">Briefing visual</h3>
+        <ul class="clean">
+          <li><b>Mulher 28–32 anos</b>, traços brasileiros</li>
+          <li><b>Cabelo natural ou levemente arrumado</b> — não de salão impecável</li>
+          <li><b>Roupa confortável de casa</b> — moletom, blusa de amamentação, regata</li>
+          <li><b>Sorriso suave, natural</b> — não pose de revista</li>
+          <li><b>Bebê de colo</b> em alguns frames (não em todos)</li>
+          <li><b>Ambiente caseiro</b> — luz natural, sofá, quarto do bebê, cozinha</li>
+          <li><b>Celular na mão</b> em algumas referências (rotina dela)</li>
+          <li><b>Paleta:</b> tons quentes, beges, off-white, terracota</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-top:0">Bancos de imagem sugeridos</h3>
+        <ul class="clean">
+          <li><b>Unsplash</b> — buscar: "brazilian mother newborn home", "young mom maternity leave", "new mom baby natural light"</li>
+          <li><b>Pexels</b> — "mãe e bebê", "maternidade caseira"</li>
+          <li><b>iStock / Adobe Stock</b> — pagas, mais brasileiras (filtrar etnia + idade)</li>
+          <li><b>Ideal:</b> fotos com identidade brasileira (cabelo cacheado/liso, tons de pele diversos) — fugir do estoque genérico anglo-saxão</li>
+        </ul>
+        <p style="font-size:13px;color:#7a6051;margin-top:14px;line-height:1.6"><strong>Dica:</strong> usar 3–4 referências (não 1 só) — Ana é um <i>perfil</i>, não uma pessoa específica. Mostra à equipe um <i>moodboard</i> com várias mulheres dentro do perfil.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer-note">
+    Persona criada com base na análise de vendas Março–Maio 2026 e comportamento dos grupos · Buscador Geek
+  </div>
+
+</div>
+</body>
+</html>
